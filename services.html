@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUMINA | Services</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .page-header {
+            background: transparent !important;
+            min-height: auto !important;
+        }
+
+        .page-header::before {
+            display: none !important;
+        }
+
+        .service-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            padding: 4rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .service-row:last-child {
+            border-bottom: none;
+        }
+
+        .service-row.reverse {
+            direction: rtl;
+            /* simple trick for alternating grid without changing html structure heavily, though normally grid-areas are better */
+        }
+
+        .service-row.reverse .service-content {
+            direction: ltr;
+        }
+
+        @media(max-width: 900px) {
+
+            .service-row,
+            .service-row.reverse {
+                grid-template-columns: 1fr;
+                direction: ltr;
+                text-align: center;
+            }
+
+            .service-media {
+                order: -1;
+            }
+        }
+
+        .service-media img {
+            width: 100%;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .service-list {
+            margin-top: 2rem;
+            list-style: none;
+        }
+
+        .service-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .service-list li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--accent-color);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="nav-left">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon"><i class="fas fa-film"></i></div>
+                    LUMINA<span>.</span>
+                </a>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home 1</a></li>
+                <li><a href="home-studio.html">Home 2</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="portfolio.html">Work</a></li>
+                <li><a href="crew.html">Crew</a></li>
+                <li><a href="services.html" class="active">Services</a></li>
+                <li><a href="blog.html">Journal</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li class="mobile-actions">
+                    <a href="login.html" class="btn btn-sm">Login</a>
+                    <a href="signup.html" class="btn btn-sm btn-primary">Sign Up</a>
+                </li>
+            </ul>
+
+            <div class="nav-right">
+                <div class="nav-actions">
+                    <button class="theme-btn" title="Toggle Theme"><i class="fas fa-moon"></i></button>
+                    <a href="login.html" class="btn btn-sm">Login</a>
+                    <a href="signup.html" class="btn btn-sm btn-primary">Sign Up</a>
+                </div>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1 class="fade-in" style="margin-bottom: 0.75rem;">Our Expertise</h1>
+            <p class="fade-in"
+                style="max-width: 850px; margin: 0 auto; line-height: 1.8; color: var(--text-secondary);">From initial
+                conceptualization to final color grading, our full-cycle production services are tailored to meet the
+                demands of modern storytelling. We provide the tools, the talent, and the technology to bring any vision
+                to life with precision, passion, and artistic integrity across every stage of the creative process. This
+                is the full spectrum of our cinematic capabilities delivered with excellence.</p>
+        </div>
+    </header>
+
+    <!-- Structured Content Sections -->
+    <main class="structured-sections">
+        <!-- Section 1: Pre-Production (Split) -->
+        <section class="section-split">
+            <div class="container split-image-wrapper fade-in">
+                <img src="https://images.pexels.com/photos/13826426/pexels-photo-13826426.jpeg" alt="Pre-Production"
+                    class="split-image">
+            </div>
+            <div class="container split-content fade-in">
+                <h2>THE BLUEPRINT OF MASTERPIECES</h2>
+                <p>Success is forged in the fires of preparation. Our pre-production phase includes script refinement,
+                    cinematic storyboarding, and world-class casting to ensure every detail is locked.</p>
+                <a href="about.html" class="btn btn-primary">Our Visionary Team</a>
+            </div>
+        </section>
+
+        <!-- Section 2: Production Excellence (Split Reverse) -->
+        <section class="section-split reverse">
+            <div class="container split-image-wrapper fade-in">
+                <img src="https://images.pexels.com/photos/5581828/pexels-photo-5581828.jpeg" alt="Production"
+                    class="split-image">
+            </div>
+            <div class="container split-content fade-in">
+                <h2>CAPTURING THE SUBLIME</h2>
+                <p>Armed with ARRI and RED cinema systems, we capture the world with unmatched fidelity. Our sets are
+                    hubs of disciplined creativity where visual magic is manufactured frame by frame.</p>
+                <a href="portfolio.html" class="btn">View Our Showreel</a>
+            </div>
+        </section>
+
+        <!-- Section 3: Post-Production Art (Highlight) -->
+        <section class="section-highlight fade-in">
+            <div class="container">
+                <h2>"We don't just edit footage; we sculpt emotion."</h2>
+                <p>– Specialized high-end VFX, color grading, and immersive sound design.</p>
+                <a href="crew.html" class="btn">Meet Our Editors</a>
+            </div>
+        </section>
+
+        <!-- Section 4: Narrative Strategy (Split) -->
+        <section class="section-split">
+            <div class="container split-image-wrapper fade-in">
+                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop"
+                    alt="Strategy" class="split-image">
+            </div>
+            <div class="container split-content fade-in">
+                <h2>BEYOND VISUALS</h2>
+                <p>Every frame serves a strategic purpose. We design visual narratives that don't just win awards but
+                    drive measurable engagement and cultural impact for your brand.</p>
+                <a href="blog.html" class="btn">Read Our Insight</a>
+            </div>
+        </section>
+
+        <!-- Section 5: Customized Solutions (Full CTA) -->
+        <section class="section-cta-full fade-in">
+            <div class="container">
+                <h2>TRANSFORM YOUR STORY</h2>
+                <p style="max-width: 600px; margin: 0 auto 2.5rem; color: #aaa;">From independent creative ventures to
+                    Fortune 500 campaigns, we scale our expertise to meet your unique production needs.</p>
+                <a href="contact.html" class="btn btn-primary btn-lg" style="padding: 1.2rem 3rem;">Initiate Project</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo" style="margin-bottom: 1.5rem; display: flex;">
+                        <div class="logo-icon"><i class="fas fa-film"></i></div>
+                        LUMINA<span>.</span>
+                    </a>
+                    <p>Directing the future of cinematic excellence through immersive visual storytelling and raw
+                        creative passion.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-vimeo-v"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Explore</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="portfolio.html">Work</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="crew.html">Crew</a></li>
+                        <li><a href="blog.html">Journal</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt" style="margin-right:12px; color:var(--accent-color)"></i>
+                            123 Cinema Blvd, Los Angeles, CA</li>
+                        <li><i class="fas fa-envelope" style="margin-right:12px; color:var(--accent-color)"></i>
+                            hello@lumina.com</li>
+                        <li><i class="fas fa-phone" style="margin-right:12px; color:var(--accent-color)"></i>
+                            +1 (555) 123-4567</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <p>&copy; 2026 LUMINA. All rights reserved.</p>
+                </div>
+                <div class="back-to-top" title="Back to Top">
+                    <i class="fas fa-arrow-up"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUMINA | Showreel 2024</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .showreel-hero {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .video-container iframe,
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: opacity 0.5s ease;
+        }
+
+        .video-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .play-btn {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            color: var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: transform 0.3s ease, background 0.3s ease;
+            margin-bottom: 2rem;
+            box-shadow: 0 0 30px rgba(230, 0, 0, 0.3);
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+            background: var(--accent-hover);
+        }
+
+        .showreel-info {
+            z-index: 3;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .back-link {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            z-index: 10;
+            color: var(--white);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .back-link:hover {
+            color: var(--accent-color);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="nav-left">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon"><i class="fas fa-film"></i></div>
+                    LUMINA<span>.</span>
+                </a>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home 1</a></li>
+                <li><a href="home-studio.html">Home 2</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="portfolio.html">Work</a></li>
+                <li><a href="crew.html">Crew</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="blog.html">Journal</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li class="mobile-actions">
+                    <a href="login.html" class="btn btn-sm">Login</a>
+                    <a href="signup.html" class="btn btn-sm btn-primary">Sign Up</a>
+                </li>
+            </ul>
+
+            <div class="nav-right">
+                <div class="nav-actions">
+                    <button class="theme-btn" title="Toggle Theme"><i class="fas fa-moon"></i></button>
+                    <a href="login.html" class="btn btn-sm">Login</a>
+                    <a href="signup.html" class="btn btn-sm btn-primary">Sign Up</a>
+                </div>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="showreel-hero">
+        <div class="video-container" id="videoContainer">
+            <!-- Using a high-quality cinematic placeholder video from Pexels/Vimeo/Unsplash -->
+            <video id="reelVideo" loop playsinline>
+                <source
+                    src="https://player.vimeo.com/external/494252666.sd.mp4?s=72ad57a7061397552de7d6cb04043b3f095196fa&profile_id=164&oauth2_token_id=57447761"
+                    type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <div class="video-overlay" id="videoOverlay">
+            <div class="play-btn" id="playBtn">
+                <i class="fas fa-play"></i>
+            </div>
+            <h1 class="fade-in">LUMINA SHOWREEL 2024</h1>
+            <p class="fade-in">A journey through our most impactful stories.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo" style="margin-bottom: 1.5rem; display: flex;">
+                        <div class="logo-icon"><i class="fas fa-film"></i></div>
+                        LUMINA<span>.</span>
+                    </a>
+                    <p>Directing the future of cinematic excellence through immersive visual storytelling and raw
+                        creative passion.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-vimeo-v"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Explore</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="portfolio.html">Work</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="crew.html">Crew</a></li>
+                        <li><a href="blog.html">Journal</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt" style="margin-right:12px; color:var(--accent-color)"></i>
+                            123 Cinema Blvd, Los Angeles, CA</li>
+                        <li><i class="fas fa-envelope" style="margin-right:12px; color:var(--accent-color)"></i>
+                            hello@lumina.com</li>
+                        <li><i class="fas fa-phone" style="margin-right:12px; color:var(--accent-color)"></i>
+                            +1 (555) 123-4567</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <p>&copy; 2026 LUMINA. All rights reserved.</p>
+                </div>
+                <div class="back-to-top" title="Back to Top">
+                    <i class="fas fa-arrow-up"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        const playBtn = document.getElementById('playBtn');
+        const videoOverlay = document.getElementById('videoOverlay');
+        const reelVideo = document.getElementById('reelVideo');
+
+        playBtn.addEventListener('click', () => {
+            reelVideo.play();
+            videoOverlay.classList.add('hidden');
+        });
+
+        // Loop functionality is already in the video tag but we can add pause/play on click
+        reelVideo.addEventListener('click', () => {
+            if (reelVideo.paused) {
+                reelVideo.play();
+                videoOverlay.classList.add('hidden');
+            } else {
+                reelVideo.pause();
+                videoOverlay.classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+
+</html>

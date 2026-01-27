@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUMINA Studio Overview</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Home 2 Specific Styles */
+        .studio-hero {
+            /* Layout handles by style.css */
+            background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('https://images.unsplash.com/photo-1598899134739-967cea94b6ce?q=80&w=2070&auto=format&fit=crop') center/cover fixed;
+        }
+
+        .philosophy-section {
+            background-color: var(--white);
+            color: var(--bg-color);
+        }
+
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        @media(max-width: 768px) {
+            .philosophy-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .service-preview-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+
+        .service-preview-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.08);
+            /* slight lighten */
+            border-color: var(--accent-color);
+        }
+
+        .service-preview-card i {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .client-logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 3rem;
+            align-items: center;
+            opacity: 0.7;
+        }
+
+        .client-logo-grid img {
+            filter: grayscale(100%);
+            transition: var(--transition);
+        }
+
+        .client-logo-grid img:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="nav-left">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon"><i class="fas fa-film"></i></div>
+                    LUMINA<span>.</span>
+                </a>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home 1</a></li>
+                <li><a href="home-studio.html" class="active">Home 2</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="portfolio.html">Work</a></li>
+                <li><a href="crew.html">Crew</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="blog.html">Journal</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li class="mobile-actions">
+                    <a href="login.html" class="btn btn-sm">Login</a>
+                    <a href="signup.html" class="btn btn-sm btn-primary">Sign Up</a>
+                </li>
+            </ul>
+
+            <div class="nav-right">
+                <div class="nav-actions">
+                    <button class="theme-btn" title="Toggle Theme"><i class="fas fa-moon"></i></button>
+                    <a href="login.html" class="btn btn-sm">Login</a>
+                    <a href="signup.html" class="btn btn-sm btn-primary">Sign Up</a>
+                </div>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Studio Hero -->
+    <header class="studio-hero">
+        <div class="container">
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;" class="fade-in">
+                <span class="accent-text"
+                    style="color:var(--accent-color); letter-spacing:4px; text-transform:uppercase; display: block; margin-bottom: 1rem;">The
+                    Studio</span>
+                <h1 style="margin: 0 0 1.5rem; width: 100%;">WHERE CREATIVITY MEETS STRATEGY</h1>
+                <p style="font-size: 1.2rem; margin: 0 auto 2.5rem; color: #ccc; max-width: 650px;">We are a collective
+                    of visionaries,
+                    dreamers, and doers. We don't just make videos; we design experiences that resonate.</p>
+                <a href="#philosophy" class="btn btn-primary">Discover Our Philosophy</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Structured Content Sections -->
+    <main class="structured-sections">
+        <!-- Section 1: The Studio Concept (Split) -->
+        <section class="section-split">
+            <div class="container split-image-wrapper fade-in">
+                <img src="https://images.pexels.com/photos/29188030/pexels-photo-29188030.jpeg" alt="The Studio"
+                    class="split-image">
+            </div>
+            <div class="container split-content fade-in">
+                <h2>THE ARCHITECTURE OF IMAGINATION</h2>
+                <p>Step into a space where every corner is designed for creative ignition. Our studio isn't just a
+                    facility; it's a living ecosystem where ideas evolve into cinematic masterpieces.</p>
+                <a href="portfolio.html" class="btn btn-primary">Tour Our Work</a>
+            </div>
+        </section>
+
+        <!-- Section 2: Global Collaborations (Split Reverse) -->
+        <section class="section-split reverse">
+            <div class="container split-image-wrapper fade-in">
+                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop"
+                    alt="Collaborations" class="split-image">
+            </div>
+            <div class="container split-content fade-in">
+                <h2>CULTIVATING GLOBAL VISIONS</h2>
+                <p>Bridging the gap between brands and audiences worldwide. We collaborate with international artists
+                    and industry leaders to deliver stories that transcend borders.</p>
+                <a href="about.html" class="btn">Our Global Network</a>
+            </div>
+        </section>
+
+        <!-- Section 3: Technical Precision (Highlight) -->
+        <section class="section-highlight fade-in"
+            style="background: radial-gradient(circle at center, rgba(0, 40, 40, 0.4) 0%, var(--bg-color) 70%);">
+            <div class="container">
+                <h2>"Precision is not just about sharpness. It's about intent."</h2>
+                <p>– Utilizing AI-enhanced workflows and rare anamorphic lenses.</p>
+                <a href="services.html" class="btn btn-primary">Explore Equipment</a>
+            </div>
+        </section>
+
+        <!-- Section 4: Narrative Innovation (Split) -->
+        <section class="section-split">
+            <div class="container split-image-wrapper fade-in">
+                <img src="https://images.pexels.com/photos/32538883/pexels-photo-32538883.jpeg" alt="Innovation"
+                    class="split-image">
+            </div>
+            <div class="container split-content fade-in">
+                <h2>REDEFINING NARRATIVE BOUNDARIES</h2>
+                <p>We don't follow trends; we set the pulse. Our team of directors and editors are masters of non-linear
+                    storytelling and immersive visual experiences.</p>
+                <a href="blog.html" class="btn">Read Our Journal</a>
+            </div>
+        </section>
+
+        <!-- Section 5: Future of Production (Full CTA) -->
+        <section class="section-cta-full fade-in">
+            <div class="container">
+                <h2>THE FUTURE OF CINEMATIC ART</h2>
+                <p style="max-width: 600px; margin: 0 auto 2.5rem; color: #aaa;">The next decade of filmmaking is here.
+                    Join us in shaping the future of digital entertainment and high-fidelity production.</p>
+                <a href="contact.html" class="btn btn-primary btn-lg" style="padding: 1.2rem 3rem;">Start Your
+                    Project</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo" style="margin-bottom: 1.5rem; display: flex;">
+                        <div class="logo-icon"><i class="fas fa-film"></i></div>
+                        LUMINA<span>.</span>
+                    </a>
+                    <p>Directing the future of cinematic excellence through immersive visual storytelling and raw
+                        creative passion.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-vimeo-v"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Explore</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="portfolio.html">Work</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="crew.html">Crew</a></li>
+                        <li><a href="blog.html">Journal</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt" style="margin-right:12px; color:var(--accent-color)"></i>
+                            123 Cinema Blvd, Los Angeles, CA</li>
+                        <li><i class="fas fa-envelope" style="margin-right:12px; color:var(--accent-color)"></i>
+                            hello@lumina.com</li>
+                        <li><i class="fas fa-phone" style="margin-right:12px; color:var(--accent-color)"></i>
+                            +1 (555) 123-4567</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <p>&copy; 2026 LUMINA. All rights reserved.</p>
+                </div>
+                <div class="back-to-top" title="Back to Top">
+                    <i class="fas fa-arrow-up"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

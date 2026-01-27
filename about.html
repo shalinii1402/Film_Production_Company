@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUMINA | About Us</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .page-header {
+            background: transparent !important;
+            min-height: auto !important;
+        }
+
+        .page-header::before {
+            display: none !important;
+        }
+
+        .about-story {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #ccc;
+        }
+
+        .about-story p {
+            margin-bottom: 2rem;
+            color: inherit;
+        }
+
+        .vision-mission {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin: 4rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .vision-mission {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .vm-card {
+            background: var(--bg-secondary);
+            padding: 3rem;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .vm-card h3 {
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        .milestones {
+            margin-top: 8rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="nav-left">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon"><i class="fas fa-film"></i></div>
+                    LUMINA<span>.</span>
+                </a>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home 1</a></li>
+                <li><a href="home-studio.html">Home 2</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="portfolio.html">Work</a></li>
+                <li><a href="crew.html">Crew</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="blog.html">Journal</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li class="mobile-actions">
+                    <a href="login.html" class="btn btn-sm">Login</a>
+                    <a href="signup.html" class="btn btn-sm btn-primary">Sign Up</a>
+                </li>
+            </ul>
+
+            <div class="nav-right">
+                <div class="nav-actions">
+                    <button class="theme-btn" title="Toggle Theme"><i class="fas fa-moon"></i></button>
+                    <a href="login.html" class="btn btn-sm">Login</a>
+                    <a href="signup.html" class="btn btn-sm btn-primary">Sign Up</a>
+                </div>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1 class="fade-in" style="font-size: 4rem; margin-bottom: 0.75rem;">Our Story</h1>
+            <p class="fade-in"
+                style="max-width: 850px; margin: 0 auto; line-height: 1.8; color: var(--text-secondary);">Since 2012,
+                we’ve been more than just a production house; we are a collective of visionaries dedicated to the art of
+                the frame, the rhythm of the edit, and the power of the story. Our mission is to bridge the gap between
+                creative ambition and technical perfection, ensuring every project carries a unique narrative signature
+                that resonates with audiences globally. This is where vision meets the horizon of cinematic possibility.
+            </p>
+        </div>
+    </header>
+
+    <!-- Structured Content Sections -->
+    <main class="structured-sections">
+        <!-- Section 1: The Founders (Split) -->
+        <section class="section-split">
+            <div class="container split-image-wrapper fade-in">
+                <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=2073&auto=format&fit=crop"
+                    alt="Founders" class="split-image">
+            </div>
+            <div class="container split-content fade-in">
+                <h2>THE ARCHITECTS OF LIGHT</h2>
+                <p>Founded by a trio of award-winning cinematographers, LUMINA began in a shadow-filled loft with a
+                    singular mission: to capture the hidden poetry of the everyday world.</p>
+                <a href="crew.html" class="btn btn-primary">Meet the Visionaries</a>
+            </div>
+        </section>
+
+        <!-- Section 2: Artistic Philosophy (Split Reverse) -->
+        <section class="section-split reverse">
+            <div class="container split-image-wrapper fade-in">
+                <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1925&auto=format&fit=crop"
+                    alt="Philosophy" class="split-image">
+            </div>
+            <div class="container split-content fade-in">
+                <h2>NARRATIVE IS OUR RELIGION</h2>
+                <p>We believe technology is merely a ghost without a soul. Our philosophy centers on emotion-driven
+                    narratives that leave a lasting imprint on the viewer's subconscious.</p>
+                <a href="portfolio.html" class="btn">View Our Legacy</a>
+            </div>
+        </section>
+
+        <!-- Section 3: The Creative Process (Highlight) -->
+        <section class="section-highlight fade-in">
+            <div class="container">
+                <h2>"A symphony of execution where chaos meets control."</h2>
+                <p>– Our orchestrated workflow ensures the final cut is exactly as intended.</p>
+                <a href="services.html" class="btn">Our Workflow</a>
+            </div>
+        </section>
+
+        <!-- Section 4: Global Footprint (Split) -->
+        <section class="section-split">
+            <div class="container split-image-wrapper fade-in">
+                <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2059&auto=format&fit=crop"
+                    alt="Global" class="split-image">
+            </div>
+            <div class="container split-content fade-in">
+                <h2>BEYOND THE HORIZON</h2>
+                <p>With projects filmed in over 30 countries, we possess the cultural intelligence and logistical
+                    capability to tell stories on a truly global scale.</p>
+                <a href="contact.html" class="btn">Global Inquiries</a>
+            </div>
+        </section>
+
+        <!-- Section 5: Testimonials -->
+        <section class="testimonials-wrapper fade-in">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">VOICES OF VISION</h2>
+                    <p>We don't just deliver videos; we build trust through cinematic excellence.</p>
+                </div>
+
+                <div class="testimonial-grid">
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial-card">
+                        <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                        <p class="testimonial-text">"LUMINA transformed our brand's narrative into a cinematic journey.
+                            Their attention to detail and emotional depth is unparalleled in the industry today."</p>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop"
+                                alt="Marcus Chen" class="author-img">
+                            <div class="author-info">
+                                <h4>Marcus Chen</h4>
+                                <p>Creative Director, Zenith Lux</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial-card">
+                        <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                        <p class="testimonial-text">"Working with them was a masterclass in collaboration. They took our
+                            complex message and distilled it into a powerful visual story that resonated globally."</p>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop"
+                                alt="Elena Rodriguez" class="author-img">
+                            <div class="author-info">
+                                <h4>Elena Rodriguez</h4>
+                                <p>Head of Marketing, NeoPulse</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial-card">
+                        <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                        <p class="testimonial-text">"The level of technical mastery they bring to the table is
+                            astounding. They are not just filmmakers; they are visual architects of the highest order."
+                        </p>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2070&auto=format&fit=crop"
+                                alt="David Sterling" class="author-img">
+                            <div class="author-info">
+                                <h4>David Sterling</h4>
+                                <p>Founder, Sterling Estates</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTA Box -->
+                <div class="cta-box fade-in">
+                    <h3>READY TO TELL YOUR STORY?</h3>
+                    <p>Let's collaborate on your next project and create something that the world will never forget. Our
+                        studio doors are always open for visionary ideas.</p>
+                    <a href="contact.html" class="btn btn-primary">Start Your Project</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Future of Lumina (Full CTA) -->
+        <section class="section-cta-full fade-in">
+            <div class="container">
+                <h2>THE NEXT REVOLUTION</h2>
+                <p style="max-width: 600px; margin: 0 auto 2.5rem; color: #aaa;">As we evolve, our commitment to
+                    innovation grows. Join us as we explore the intersection of cinematic tradition and future digital
+                    frontiers.</p>
+                <a href="blog.html" class="btn btn-primary btn-lg" style="padding: 1.2rem 3rem;">The Future Journal</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo" style="margin-bottom: 1.5rem; display: flex;">
+                        <div class="logo-icon"><i class="fas fa-film"></i></div>
+                        LUMINA<span>.</span>
+                    </a>
+                    <p>Directing the future of cinematic excellence through immersive visual storytelling and raw
+                        creative passion.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-vimeo-v"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Explore</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="portfolio.html">Work</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="crew.html">Crew</a></li>
+                        <li><a href="blog.html">Journal</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt" style="margin-right:12px; color:var(--accent-color)"></i>
+                            123 Cinema Blvd, Los Angeles, CA</li>
+                        <li><i class="fas fa-envelope" style="margin-right:12px; color:var(--accent-color)"></i>
+                            hello@lumina.com</li>
+                        <li><i class="fas fa-phone" style="margin-right:12px; color:var(--accent-color)"></i>
+                            +1 (555) 123-4567</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <p>&copy; 2026 LUMINA. All rights reserved.</p>
+                </div>
+                <div class="back-to-top" title="Back to Top">
+                    <i class="fas fa-arrow-up"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

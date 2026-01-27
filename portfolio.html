@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUMINA | Portfolio</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .page-header {
+            /* Layout handled by style.css */
+            background-color: transparent;
+        }
+
+        .portfolio-hero {
+            background: transparent !important;
+            min-height: auto !important;
+            /* Reduce excessive height if needed, or keep to maintain spacing */
+        }
+
+        .portfolio-hero::before {
+            display: none !important;
+            /* Remove the dark/ash overlay */
+        }
+
+        .filter-nav {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0 50px;
+            /* Reduced top margin */
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 5;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            /* Ensure visibility */
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            padding: 5px 10px;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            color: var(--white);
+        }
+
+        .filter-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 5px;
+            height: 5px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+        }
+
+        /* Portfolio Grid Improvements */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            /* consistent sizing */
+            gap: 40px 30px;
+            /* Vertical gap larger */
+            padding-bottom: 100px;
+        }
+
+        /* Improved Thumbnail Visibility */
+        .portfolio-item {
+            position: relative;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            border-radius: 4px;
+            cursor: pointer;
+            display: block;
+        }
+
+        /* Gradient Overlay for Text Readability */
+        .portfolio-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .portfolio-item:hover::after {
+            opacity: 1;
+        }
+
+        .portfolio-item.hidden {
+            display: none;
+        }
+
+        .portfolio-thumb {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            /* Reduced overlay opacity */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 2;
+            /* Content above gradient */
+        }
+
+        .portfolio-item:hover .portfolio-thumb {
+            transform: scale(1.1);
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .play-icon {
+            font-size: 3rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-item:hover .play-icon {
+            transform: scale(1);
+        }
+
+        .item-details h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .item-details p {
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(5px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.open {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 1000px;
+            aspect-ratio: 16/9;
+            background: #000;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: var(--white);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--accent-color);
+        }
+
+        .modal-text {
+            color: white;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Iframe styling for placeholder video */
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="nav-left">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon"><i class="fas fa-film"></i></div>
+                    LUMINA<span>.</span>
+                </a>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home 1</a></li>
+                <li><a href="home-studio.html">Home 2</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="portfolio.html" class="active">Work</a></li>
+                <li><a href="crew.html">Crew</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="blog.html">Journal</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li class="mobile-actions">
+                    <a href="login.html" class="btn btn-sm">Login</a>
+                    <a href="signup.html" class="btn btn-sm btn-primary">Sign Up</a>
+                </li>
+            </ul>
+
+            <div class="nav-right">
+                <div class="nav-actions">
+                    <button class="theme-btn" title="Toggle Theme"><i class="fas fa-moon"></i></button>
+                    <a href="login.html" class="btn btn-sm">Login</a>
+                    <a href="signup.html" class="btn btn-sm btn-primary">Sign Up</a>
+                </div>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header portfolio-hero">
+        <div class="container">
+            <h1 class="fade-in" style="margin-bottom: 0.75rem;">Selected Works</h1>
+            <p class="fade-in"
+                style="max-width: 850px; margin: 0 auto; line-height: 1.8; color: var(--text-secondary);">Explore our
+                curated selection of cinematic projects, ranging from high-concept commercials to heart-pumping
+                documentaries. Every frame is a testament to our commitment to visual excellence and narrative depth,
+                where we push the boundaries of what's possible in modern media. This is more than a portfolio; it's a
+                digital exhibition of time, light, and motion captured for eternity.</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Filters Moved Below Hero -->
+        <div class="filter-nav">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="film">Films</button>
+            <button class="filter-btn" data-filter="commercial">Commercials</button>
+            <button class="filter-btn" data-filter="music">Music Videos</button>
+            <button class="filter-btn" data-filter="corporate">Corporate</button>
+        </div>
+
+        <div class="portfolio-grid">
+            <!-- Item 1 - Film -->
+            <div class="portfolio-item" data-category="film">
+                <img src="https://images.unsplash.com/photo-1533512930330-4ac257c86793?q=80&w=1974&auto=format&fit=crop"
+                    alt="Project" class="portfolio-thumb">
+                <div class="portfolio-overlay">
+                    <i class="fas fa-play-circle play-icon"></i>
+                    <div class="item-details">
+                        <h3>The Darkest Hour</h3>
+                        <p>Short Film</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 2 - Commercial -->
+            <div class="portfolio-item" data-category="commercial">
+                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop"
+                    alt="Project" class="portfolio-thumb">
+                <div class="portfolio-overlay">
+                    <i class="fas fa-play-circle play-icon"></i>
+                    <div class="item-details">
+                        <h3>Neon Energy</h3>
+                        <p>TV Commercial</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 3 - Music -->
+            <div class="portfolio-item" data-category="music">
+                <img src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?q=80&w=2070&auto=format&fit=crop"
+                    alt="Project" class="portfolio-thumb">
+                <div class="portfolio-overlay">
+                    <i class="fas fa-play-circle play-icon"></i>
+                    <div class="item-details">
+                        <h3>Midnight Beat</h3>
+                        <p>Music Video</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 4 - Corporate -->
+            <div class="portfolio-item" data-category="corporate">
+                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop"
+                    alt="Project" class="portfolio-thumb">
+                <div class="portfolio-overlay">
+                    <i class="fas fa-play-circle play-icon"></i>
+                    <div class="item-details">
+                        <h3>Future Tech</h3>
+                        <p>Brand Film</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 5 - Film -->
+            <div class="portfolio-item" data-category="film">
+                <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=2070&auto=format&fit=crop"
+                    alt="Project" class="portfolio-thumb">
+                <div class="portfolio-overlay">
+                    <i class="fas fa-play-circle play-icon"></i>
+                    <div class="item-details">
+                        <h3>Desert Storm</h3>
+                        <p>Feature Film</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 6 - Music -->
+            <div class="portfolio-item" data-category="music">
+                <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=2070&auto=format&fit=crop"
+                    alt="Project" class="portfolio-thumb">
+                <div class="portfolio-overlay">
+                    <i class="fas fa-play-circle play-icon"></i>
+                    <div class="item-details">
+                        <h3>Echoes</h3>
+                        <p>Live Performance</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Structured Content Sections -->
+    <main class="structured-sections">
+        <!-- Section 1: Behind the Lens (Split) -->
+        <section class="section-split">
+            <div class="container split-image-wrapper fade-in">
+                <img src="https://images.pexels.com/photos/8088386/pexels-photo-8088386.jpeg" alt="Production"
+                    class="split-image">
+            </div>
+            <div class="container split-content fade-in">
+                <h2>CRAFTING THE UNSEEN</h2>
+                <p>Every project in our portfolio is a testament to our pursuit of the sublime. We don't just capture
+                    images; we sculpt light to reveal the hidden depths of the narrative.</p>
+                <a href="about.html" class="btn btn-primary">Our Creative Soul</a>
+            </div>
+        </section>
+
+        <!-- Section 2: Technical Mastery (Split Reverse) -->
+        <section class="section-split reverse">
+            <div class="container split-image-wrapper fade-in">
+                <img src="https://images.pexels.com/photos/11553189/pexels-photo-11553189.jpeg" alt="Mastery"
+                    class="split-image">
+            </div>
+            <div class="container split-content fade-in">
+                <h2>THE RHYTHM OF THE EDIT</h2>
+                <p>In our post-production suite, hundreds of hours of raw footage are refined into a singular cohesive
+                    vision. It's where the heart of the story begins to beat.</p>
+                <a href="services.html" class="btn">Post-Production Mastery</a>
+            </div>
+        </section>
+
+        <!-- Section 3: Industry Impact (Highlight) -->
+        <section class="section-highlight fade-in">
+            <div class="container">
+                <h2>"Visual identity is the currency of the modern age."</h2>
+                <p>– Helping brands define their narrative in a crowded digital landscape.</p>
+                <a href="crew.html" class="btn">Meet the Creators</a>
+            </div>
+        </section>
+
+        <!-- Section 4: Collaborative Vision (Split) -->
+        <section class="section-split">
+            <div class="container split-image-wrapper fade-in">
+                <img src="https://images.pexels.com/photos/275977/pexels-photo-275977.jpeg" alt="Collaborations"
+                    class="split-image">
+            </div>
+            <div class="container split-content fade-in">
+                <h2>A SHARED ODYSSEY</h2>
+                <p>We treat every client collaboration as an artistic partnership. Your vision is the map, and our
+                    expertise is the compass that guides us to cinematic excellence.</p>
+                <a href="contact.html" class="btn">Partner With Us</a>
+            </div>
+        </section>
+
+        <!-- Section 5: Future Works (Full CTA) -->
+        <section class="section-cta-full fade-in">
+            <div class="container">
+                <h2>THE UNWRITTEN CHAPTERS</h2>
+                <p style="max-width: 600px; margin: 0 auto 2.5rem; color: #aaa;">The next masterpiece is always on the
+                    horizon. Explore our journal to see what we're dreaming up for the future of cinematic storytelling.
+                </p>
+                <a href="blog.html" class="btn btn-primary btn-lg" style="padding: 1.2rem 3rem;">Explore Our Journal</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="videoContainer"
+                style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #000;">
+                <!-- Video/Iframe will be injected here -->
+                <p style="color:white;">Video Placeholder Loaded</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo" style="margin-bottom: 1.5rem; display: flex;">
+                        <div class="logo-icon"><i class="fas fa-film"></i></div>
+                        LUMINA<span>.</span>
+                    </a>
+                    <p>Directing the future of cinematic excellence through immersive visual storytelling and raw
+                        creative passion.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-vimeo-v"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Explore</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="portfolio.html">Work</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="crew.html">Crew</a></li>
+                        <li><a href="blog.html">Journal</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt" style="margin-right:12px; color:var(--accent-color)"></i>
+                            123 Cinema Blvd, Los Angeles, CA</li>
+                        <li><i class="fas fa-envelope" style="margin-right:12px; color:var(--accent-color)"></i>
+                            hello@lumina.com</li>
+                        <li><i class="fas fa-phone" style="margin-right:12px; color:var(--accent-color)"></i>
+                            +1 (555) 123-4567</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <p>&copy; 2026 LUMINA. All rights reserved.</p>
+                </div>
+                <div class="back-to-top" title="Back to Top">
+                    <i class="fas fa-arrow-up"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Filtering Logic
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const items = document.querySelectorAll('.portfolio-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+
+                items.forEach(item => {
+                    const category = item.getAttribute('data-category');
+                    if (filter === 'all' || category === filter) {
+                        item.classList.remove('hidden');
+                        setTimeout(() => item.style.opacity = '1', 10);
+                    } else {
+                        item.classList.add('hidden');
+                        item.style.opacity = '0';
+                    }
+                });
+            });
+        });
+
+        // Modal Logic
+        const modal = document.getElementById('videoModal');
+        const closeModal = document.querySelector('.close-modal');
+        const videoContainer = document.getElementById('videoContainer');
+
+        items.forEach(item => {
+            item.addEventListener('click', () => {
+                const title = item.querySelector('h3').innerText;
+                modal.classList.add('open');
+
+                // Simulate loading a video. In a real app, you'd grab a data-video-url attribute.
+                // For now we just show a placeholder message or embed a generic one.
+                videoContainer.innerHTML = `
+                    <div style="width:100%; height:100%; display:flex; flex-direction:column; justify-content:center; align-items:center; color:white;">
+                        <i class="fas fa-play-circle" style="font-size:4rem; margin-bottom:1rem; color: #d4af37;"></i>
+                        <h2>Playing: ${title}</h2>
+                        <p>Video content would play here.</p>
+                    </div>
+                `;
+            });
+        });
+
+        closeModal.addEventListener('click', () => {
+            modal.classList.remove('open');
+            videoContainer.innerHTML = ''; // Stop video
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target == modal) {
+                modal.classList.remove('open');
+                videoContainer.innerHTML = '';
+            }
+        });
+    </script>
+</body>
+
+</html>

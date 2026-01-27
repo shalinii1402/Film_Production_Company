@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUMINA | The Crew</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .page-header {
+            background: transparent !important;
+            min-height: auto !important;
+        }
+
+        .page-header::before {
+            display: none !important;
+        }
+
+        .crew-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .crew-card {
+            background-color: var(--bg-secondary);
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .crew-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-color);
+        }
+
+        .crew-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: var(--transition);
+        }
+
+        .crew-card:hover .crew-image {
+            filter: grayscale(0%);
+        }
+
+        .crew-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .crew-name {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+        }
+
+        .crew-role {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .crew-bio {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .crew-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .crew-social a {
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+
+        .crew-social a:hover {
+            color: var(--accent-color);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="nav-left">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon"><i class="fas fa-film"></i></div>
+                    LUMINA<span>.</span>
+                </a>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home 1</a></li>
+                <li><a href="home-studio.html">Home 2</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="portfolio.html">Work</a></li>
+                <li><a href="crew.html" class="active">Crew</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="blog.html">Journal</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <!-- Mobile Only Actions -->
+                <li class="mobile-actions">
+                    <a href="login.html" class="btn btn-sm">Login</a>
+                    <a href="signup.html" class="btn btn-sm btn-primary">Sign Up</a>
+                </li>
+            </ul>
+
+            <div class="nav-right">
+                <div class="nav-actions">
+                    <button class="theme-btn" title="Toggle Theme"><i class="fas fa-moon"></i></button>
+                    <a href="login.html" class="btn btn-sm">Login</a>
+                    <a href="signup.html" class="btn btn-sm btn-primary">Sign Up</a>
+                </div>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="container">
+            <h1 class="fade-in" style="margin-bottom: 0.75rem;">Meet The Team</h1>
+            <p class="fade-in"
+                style="max-width: 850px; margin: 0 auto; line-height: 1.8; color: var(--text-secondary);">Meet the
+                architects of your next masterpiece. Our team consists of award-winning directors, meticulous
+                cinematographers, and innovative editors who work in perfect harmony to bring your vision to life.
+                Together, we turn abstract ideas into tangible cinematic legacies that resonate with audiences worldwide
+                through technical mastery and raw creative passion. This is the collective intelligence behind the lens.
+            </p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="crew-grid">
+            <!-- Team Member 1 -->
+            <div class="crew-card fade-in">
+                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1974&auto=format&fit=crop"
+                    alt="Member" class="crew-image">
+                <div class="crew-info">
+                    <h3 class="crew-name">Alex Morgan</h3>
+                    <p class="crew-role">Creative Director</p>
+                    <p class="crew-bio">15 years of experience crafting award-winning narratives for global brands. Alex
+                        oversees the creative arc of every project from storyboard to final export, bridging the gap
+                        between corporate messaging and high-art cinematic expression. Dedicated to finding the human
+                        heartbeat in every story we tell.</p>
+                    <div class="crew-social">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Member 2 -->
+            <div class="crew-card fade-in">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop"
+                    alt="Member" class="crew-image">
+                <div class="crew-info">
+                    <h3 class="crew-name">Sarah Jenkins</h3>
+                    <p class="crew-role">Lead Producer</p>
+                    <p class="crew-bio">The organizational mastermind ensuring every shoot runs flawlessly and on time.
+                        Expert in international logistics and managing high-stakes production schedules, she liaises
+                        between technical departments to maintain a unified production workflow. Commitment to
+                        excellence keeps the most complex projects grounded.</p>
+                    <div class="crew-social">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Member 3 -->
+            <div class="crew-card fade-in">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop"
+                    alt="Member" class="crew-image">
+                <div class="crew-info">
+                    <h3 class="crew-name">David Chen</h3>
+                    <p class="crew-role">Director of Photography</p>
+                    <p class="crew-bio">A visual artist with a keen eye for lighting and composition. Specializing in
+                        anamorphic storytelling and natural light manipulation, David integrates cutting-edge camera
+                        technology with classic film-making techniques to create unforgettable imagery that pushes
+                        boundaries.</p>
+                    <div class="crew-social">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-vimeo-v"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Member 4 -->
+            <div class="crew-card fade-in">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1976&auto=format&fit=crop"
+                    alt="Member" class="crew-image">
+                <div class="crew-info">
+                    <h3 class="crew-name">Elena Rodriguez</h3>
+                    <p class="crew-role">Senior Editor</p>
+                    <p class="crew-bio">Weaving stories together in the edit suite with rhythm and precision. A master
+                        of non-linear narrative structures and emotional pacing, Elena blends soundscapes and visuals to
+                        create an immersive viewer experience. She is the final gatekeeper of our signature cinematic
+                        mood.</p>
+                    <div class="crew-social">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Member 5 -->
+            <div class="crew-card fade-in">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1974&auto=format&fit=crop"
+                    alt="Member" class="crew-image">
+                <div class="crew-info">
+                    <h3 class="crew-name">Marcus Thorne</h3>
+                    <p class="crew-role">Sound Designer</p>
+                    <p class="crew-bio">Crafting immersive auditory landscapes that bring visual stories to life. Expert
+                        in spatial audio and innovative foley techniques, Marcus seamlessly blends dialogue, music, and
+                        environment to drive the narrative forward. He believes what you hear is as vital as what you
+                        see.</p>
+                    <div class="crew-social">
+                        <a href="#"><i class="fab fa-soundcloud"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Member 6 -->
+            <div class="crew-card fade-in">
+                <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=1974&auto=format&fit=crop"
+                    alt="Member" class="crew-image">
+                <div class="crew-info">
+                    <h3 class="crew-name">Sophia Lee</h3>
+                    <p class="crew-role">Lighting Specialist</p>
+                    <p class="crew-bio">Sculpting shadows and light to define the atmospheric soul of every scene.
+                        Master of high-contrast cinematic lighting and color temperature manipulation, Sophia works with
+                        the DP to create a specific visual DNA. She transforms ordinary spaces into extraordinary
+                        worlds.</p>
+                    <div class="crew-social">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-behance"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Structured Content Sections -->
+    <main class="structured-sections">
+        <!-- Section 1: The Collective Mind (Split) -->
+        <section class="section-split">
+            <div class="container split-image-wrapper fade-in">
+                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1974&auto=format&fit=crop"
+                    alt="Collective" class="split-image">
+            </div>
+            <div class="container split-content fade-in">
+                <h2>THE SYNERGY OF TALENT</h2>
+                <p>Our crew is more than a team; it's a collective of specialists who speak the language of light and
+                    shadow. We bring together diverse perspectives to create unified cinematic visions.</p>
+                <a href="about.html" class="btn btn-primary">Our Origin Story</a>
+            </div>
+        </section>
+
+        <!-- Section 2: Technical Brilliance (Split Reverse) -->
+        <section class="section-split reverse">
+            <div class="container split-image-wrapper fade-in">
+                <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=2084&auto=format&fit=crop"
+                    alt="Technical" class="split-image">
+            </div>
+            <div class="container split-content fade-in">
+                <h2>MASTERS OF THE CRAFT</h2>
+                <p>From the camera department to the edit suite, every member of LUMINA is a master of their specific
+                    discipline, committed to the relentless pursuit of technical perfection.</p>
+                <a href="services.html" class="btn">Our Specialized Services</a>
+            </div>
+        </section>
+
+        <!-- Section 3: Leadership & Vision (Highlight) -->
+        <section class="section-highlight fade-in">
+            <div class="container">
+                <h2>"Leadership is not about control, but about unleashing potential."</h2>
+                <p>– We guide the narrative journey with a steady hand and a visionary eye.</p>
+                <a href="portfolio.html" class="btn">View Our Legacy</a>
+            </div>
+        </section>
+
+        <!-- Section 4: Culture of Innovation (Split) -->
+        <section class="section-split">
+            <div class="container split-image-wrapper fade-in">
+                <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=2070&auto=format&fit=crop"
+                    alt="Culture" class="split-image">
+            </div>
+            <div class="container split-content fade-in">
+                <h2>FUELING CREATIVE FRICTION</h2>
+                <p>We believe the best ideas are born from honest collaboration and the healthy push-and-pull of
+                    creative expertise. We cultivate an environment where innovation is inevitable.</p>
+                <a href="blog.html" class="btn">Inside Our Process</a>
+            </div>
+        </section>
+
+        <!-- Section 5: Join the Mission (Full CTA) -->
+        <section class="section-cta-full fade-in">
+            <div class="container">
+                <h2>THE NEXT CREATIVE REVOLUTION</h2>
+                <p style="max-width: 600px; margin: 0 auto 2.5rem; color: #aaa;">Are you ready to redefine what's
+                    possible in cinematic storytelling? We're always looking for new visionaries to join our growing
+                    global collective.</p>
+                <a href="contact.html" class="btn btn-primary btn-lg" style="padding: 1.2rem 3rem;">Work With Us</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo" style="margin-bottom: 1.5rem; display: flex;">
+                        <div class="logo-icon"><i class="fas fa-film"></i></div>
+                        LUMINA<span>.</span>
+                    </a>
+                    <p>Directing the future of cinematic excellence through immersive visual storytelling and raw
+                        creative passion.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-vimeo-v"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Explore</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="portfolio.html">Work</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="crew.html">Crew</a></li>
+                        <li><a href="blog.html">Journal</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt" style="margin-right:12px; color:var(--accent-color)"></i>
+                            123 Cinema Blvd, Los Angeles, CA</li>
+                        <li><i class="fas fa-envelope" style="margin-right:12px; color:var(--accent-color)"></i>
+                            hello@lumina.com</li>
+                        <li><i class="fas fa-phone" style="margin-right:12px; color:var(--accent-color)"></i>
+                            +1 (555) 123-4567</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <p>&copy; 2026 LUMINA. All rights reserved.</p>
+                </div>
+                <div class="back-to-top" title="Back to Top">
+                    <i class="fas fa-arrow-up"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

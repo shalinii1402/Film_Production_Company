@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUMINA | Journal</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Editorial Journal Styles */
+        :root {
+            --input-bg: rgba(255, 255, 255, 0.1);
+            /* Increased opacity */
+            --card-border: rgba(255, 255, 255, 0.06);
+        }
+
+        .journal-hero {
+            background: transparent !important;
+            min-height: auto !important;
+        }
+
+        .journal-hero::before {
+            display: none !important;
+        }
+
+
+        /* Search & Filter Bar */
+        .controls-container {
+            position: sticky;
+            top: 70px;
+            z-index: 100;
+            background: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(20px);
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--card-border);
+            margin-bottom: 4rem;
+        }
+
+        .journal-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .search-wrapper {
+            position: relative;
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .search-wrapper i {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+            z-index: 2;
+        }
+
+        .search-input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 14px 20px 14px 50px;
+            color: var(--white);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+            opacity: 1;
+            /* Firefox */
+        }
+
+        .filter-groups {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-tag {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            padding: 5px 0;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .filter-tag::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        .filter-tag:hover,
+        .filter-tag.active {
+            color: var(--white);
+        }
+
+        .filter-tag.active::after {
+            width: 100%;
+        }
+
+        /* Featured Article */
+        .featured-article {
+            margin-bottom: 8rem;
+        }
+
+        .featured-card {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 0;
+            background: var(--bg-secondary);
+            overflow: hidden;
+            border: 1px solid var(--card-border);
+        }
+
+        .featured-img-wrapper {
+            position: relative;
+            height: 420px;
+            overflow: hidden;
+        }
+
+        .featured-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.5s ease;
+        }
+
+        .featured-card:hover .featured-img {
+            transform: scale(1.05);
+        }
+
+        .featured-content {
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .category-tag {
+            color: var(--accent-color);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .featured-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .featured-excerpt {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+        }
+
+        .meta-info {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Responsive Grid */
+        .blog-section-title {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .blog-section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--card-border);
+        }
+
+        .journal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .journal-card {
+            transition: var(--transition);
+        }
+
+        .journal-thumb-wrapper {
+            position: relative;
+            aspect-ratio: 3/2;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--card-border);
+        }
+
+        .journal-thumb {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .journal-card:hover .journal-thumb {
+            transform: scale(1.05);
+        }
+
+        .journal-card-title {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+            transition: color 0.3s ease;
+        }
+
+        .journal-card:hover .journal-card-title {
+            color: var(--accent-color);
+        }
+
+        .journal-card-excerpt {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        @media (max-width: 1024px) {
+            .featured-card {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-img-wrapper {
+                height: 400px;
+            }
+
+            .featured-content {
+                padding: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .journal-controls {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .search-wrapper {
+                max-width: 100%;
+            }
+
+            .journal-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-content {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="nav-left">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon"><i class="fas fa-film"></i></div>
+                    LUMINA<span>.</span>
+                </a>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home 1</a></li>
+                <li><a href="home-studio.html">Home 2</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="portfolio.html">Work</a></li>
+                <li><a href="crew.html">Crew</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="blog.html" class="active">Journal</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li class="mobile-actions">
+                    <a href="login.html" class="btn btn-sm">Login</a>
+                    <a href="signup.html" class="btn btn-sm btn-primary">Sign Up</a>
+                </li>
+            </ul>
+
+            <div class="nav-right">
+                <div class="nav-actions">
+                    <button class="theme-btn" title="Toggle Theme"><i class="fas fa-moon"></i></button>
+                    <a href="login.html" class="btn btn-sm">Login</a>
+                    <a href="signup.html" class="btn btn-sm btn-primary">Sign Up</a>
+                </div>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="journal-hero">
+        <div class="container">
+            <span class="category-tag fade-in">Insights & Stories</span>
+            <h1 class="fade-in">Production Journal</h1>
+            <p class="fade-in"
+                style="max-width: 750px; margin: 0 auto; color: var(--text-secondary); line-height: 1.8;">Dive deep into
+                the world of cinematic production where we share our latest insights, technical breakthroughs, and the
+                creative philosophies that drive our studio forward. From behind-the-scenes stories to expert advice on
+                visual storytelling, our journal is a gateway to the art and science of modern filmmaking. Exploring the
+                intersection of art, technology, and cinematic storytelling.</p>
+        </div>
+    </header>
+
+    <div class="controls-container">
+        <div class="container journal-controls">
+            <div class="search-wrapper">
+                <i class="fas fa-search"></i>
+                <input type="text" class="search-input" placeholder="Search articles...">
+            </div>
+            <div class="filter-groups">
+                <button class="filter-tag active">All</button>
+                <button class="filter-tag">Cinematography</button>
+                <button class="filter-tag">Behind the Scenes</button>
+                <button class="filter-tag">Production Tips</button>
+                <button class="filter-tag">Technology</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Structured Content Sections -->
+    <main class="structured-sections">
+        <!-- Section 1: Editorial Philosophy (Split) -->
+        <section class="section-split">
+            <div class="container split-image-wrapper fade-in">
+                <img src="https://images.pexels.com/photos/27821472/pexels-photo-27821472.jpeg" alt="Editorial"
+                    class="split-image">
+            </div>
+            <div class="container split-content fade-in">
+                <h2>THE EDITORIAL EYE</h2>
+                <p>Our journal is a repository of cinematic intelligence. We pull back the curtain on our most complex
+                    productions to share the technical and philosophical breakthroughs that define our style.</p>
+                <a href="about.html" class="btn btn-primary">Our Journey</a>
+            </div>
+        </section>
+
+        <!-- Section 2: Technical Deep Dives (Split Reverse) -->
+        <section class="section-split reverse">
+            <div class="container split-image-wrapper fade-in">
+                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop"
+                    alt="Technology" class="split-image">
+            </div>
+            <div class="container split-content fade-in">
+                <h2>CINEMATIC TECHNOLOGY</h2>
+                <p>From the physics of lens coatings to the future of neural rendering, we explore how the tools of
+                    today are expanding the visual vocabulary of tomorrow's cinema.</p>
+                <a href="services.html" class="btn">Explore Our Expertise</a>
+            </div>
+        </section>
+
+        <!-- Section 3: Visual Storytelling (Highlight) -->
+        <section class="section-highlight fade-in">
+            <div class="container">
+                <h2>"A story is not just told; it is felt."</h2>
+                <p>– Discover the psychology behind our frame compositions and color grading.</p>
+                <a href="portfolio.html" class="btn">Visual Showcase</a>
+            </div>
+        </section>
+
+        <!-- Section 4: Behind the Scenes (Split) -->
+        <section class="section-split">
+            <div class="container split-image-wrapper fade-in">
+                <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=2070&auto=format&fit=crop"
+                    alt="Behind the Scenes" class="split-image">
+            </div>
+            <div class="container split-content fade-in">
+                <h2>PRODUCTION SECRETS</h2>
+                <p>Real stories from the set. We document the grit, the creative friction, and the collective triumphs
+                    that go into every LUMINA production.</p>
+                <a href="crew.html" class="btn">Meet the Crew</a>
+            </div>
+        </section>
+
+        <!-- Section 5: Future of Content (Full CTA) -->
+        <section class="section-cta-full fade-in">
+            <div class="container">
+                <h2>THE NEXT FRONTIER</h2>
+                <p style="max-width: 600px; margin: 0 auto 2.5rem; color: #aaa;">As the landscape of media shifts, so
+                    does our approach. Stay tuned for insights into virtual production and interactive narratives.</p>
+                <a href="contact.html" class="btn btn-primary btn-lg" style="padding: 1.2rem 3rem;">Start a
+                    Conversation</a>
+            </div>
+        </section>
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo" style="margin-bottom: 1.5rem; display: flex;">
+                        <div class="logo-icon"><i class="fas fa-film"></i></div>
+                        LUMINA<span>.</span>
+                    </a>
+                    <p>Directing the future of cinematic excellence through immersive visual storytelling and raw
+                        creative passion.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-vimeo-v"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Explore</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="portfolio.html">Work</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="crew.html">Crew</a></li>
+                        <li><a href="blog.html">Journal</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt" style="margin-right:12px; color:var(--accent-color)"></i>
+                            123 Cinema Blvd, Los Angeles, CA</li>
+                        <li><i class="fas fa-envelope" style="margin-right:12px; color:var(--accent-color)"></i>
+                            hello@lumina.com</li>
+                        <li><i class="fas fa-phone" style="margin-right:12px; color:var(--accent-color)"></i>
+                            +1 (555) 123-4567</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <p>&copy; 2026 LUMINA. All rights reserved.</p>
+                </div>
+                <div class="back-to-top" title="Back to Top">
+                    <i class="fas fa-arrow-up"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Simple Filter State Toggle
+        const filterTags = document.querySelectorAll('.filter-tag');
+
+        filterTags.forEach(tag => {
+            tag.addEventListener('click', () => {
+                filterTags.forEach(t => t.classList.remove('active'));
+                tag.classList.add('active');
+
+                // In a real application, you would trigger a fetch or filter logic here
+                console.log(`Filtering for: ${tag.innerText}`);
+            });
+        });
+
+        // Search Input UI feedback
+        const searchInput = document.querySelector('.search-input');
+        searchInput.addEventListener('input', (e) => {
+            // Placeholder for real search logic
+            if (e.target.value.length > 2) {
+                console.log(`Searching for: ${e.target.value}`);
+            }
+        });
+    </script>
+</body>
+
+</html>

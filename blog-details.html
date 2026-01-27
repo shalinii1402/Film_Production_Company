@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUMINA | Mastering Low Light</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .blog-header {
+            background: none !important;
+            height: auto !important;
+            min-height: auto !important;
+            padding-top: 140px;
+            /* Space for navbar */
+        }
+
+        .blog-header::before {
+            display: none !important;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .article-meta {
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .article-body {
+            max-width: 800px;
+            margin: 4rem auto;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #d0d0d0;
+        }
+
+        .article-body p {
+            margin-bottom: 2rem;
+            color: inherit;
+        }
+
+        .article-body h2 {
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            color: var(--white);
+        }
+
+        .article-body img {
+            width: 100%;
+            margin: 2rem 0;
+            border-radius: 4px;
+        }
+
+        .share-links {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            margin-top: 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="nav-left">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon"><i class="fas fa-film"></i></div>
+                    LUMINA<span>.</span>
+                </a>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home 1</a></li>
+                <li><a href="home-studio.html">Home 2</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="portfolio.html">Work</a></li>
+                <li><a href="crew.html">Crew</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="blog.html" class="active">Journal</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li class="mobile-actions">
+                    <a href="login.html" class="btn btn-sm">Login</a>
+                    <a href="signup.html" class="btn btn-sm btn-primary">Sign Up</a>
+                </li>
+            </ul>
+
+            <div class="nav-right">
+                <div class="nav-actions">
+                    <button class="theme-btn" title="Toggle Theme"><i class="fas fa-moon"></i></button>
+                    <a href="login.html" class="btn btn-sm">Login</a>
+                    <a href="signup.html" class="btn btn-sm btn-primary">Sign Up</a>
+                </div>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="blog-header">
+        <div class="container header-content">
+            <div class="article-meta fade-in">Oct 12, 2023 • Cinematography</div>
+            <h1 class="fade-in" style="font-size: 3rem;">Mastering Low Light Cinematography</h1>
+        </div>
+    </header>
+
+    <article class="container">
+        <div class="article-body fade-in">
+            <p class="lead" style="font-size: 1.3rem; color: #fff;">Low light is often seen as a limitation, but in
+                reality, it is one of the most powerful tools a cinematographer has to create mood, tension, and
+                intimacy.</p>
+
+            <p>Shooting in low light isn't just about bumping up your ISO. It's about understanding the quality of the
+                light you <em>do</em> have. Whether it's the flicker of a match, the glow of a dashboard, or a distant
+                streetlight, these sources become characters in themselves.</p>
+
+            <h2>Understanding Dynamic Range</h2>
+            <p>Modern cinema cameras have incredible dynamic range, allowing us to peer into the shadows without
+                introducing distracting noise. However, the key remains exposure. Underexposing to protect highlights is
+                a common technique, but in low light, we often need to be careful not to crush our blacks too much, or
+                we lose the texture of the scene.</p>
+
+            <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop"
+                alt="Neon lights">
+
+            <h2>Practical Lighting</h2>
+            <p>Practicals—lights that are visible within the frame—are your best friends. Neons, lamps, car headlights.
+                They not only motivate the light source for your subject but also add depth and interest to the
+                background. When we shot "Neon Nights" (pictured above), 80% of the lighting came from the practical
+                tubes built into the set.</p>
+
+            <h2>The Choice of Lens</h2>
+            <p>Fast lenses (f/1.4, f/2.0) are essential. They let in more light, yes, but they also provide a shallow
+                depth of field which can be used to isolate the subject from a possibly messy or dark background,
+                guiding the viewer's eye exactly where you want it.</p>
+
+            <div class="share-links">
+                <span>Share this article:</span>
+                <div class="social-icons" style="font-size: 1.2rem;">
+                    <a href="#" style="border:none;"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" style="border:none;"><i class="fab fa-twitter"></i></a>
+                    <a href="#" style="border:none;"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <div class="text-center" style="margin-top: 3rem;">
+                <a href="blog.html" class="btn">Back to Journal</a>
+            </div>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo" style="margin-bottom: 1.5rem; display: flex;">
+                        <div class="logo-icon"><i class="fas fa-film"></i></div>
+                        LUMINA<span>.</span>
+                    </a>
+                    <p>Directing the future of cinematic excellence through immersive visual storytelling and raw
+                        creative passion.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-vimeo-v"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Explore</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="portfolio.html">Work</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="crew.html">Crew</a></li>
+                        <li><a href="blog.html">Journal</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt" style="margin-right:12px; color:var(--accent-color)"></i>
+                            123 Cinema Blvd, Los Angeles, CA</li>
+                        <li><i class="fas fa-envelope" style="margin-right:12px; color:var(--accent-color)"></i>
+                            hello@lumina.com</li>
+                        <li><i class="fas fa-phone" style="margin-right:12px; color:var(--accent-color)"></i>
+                            +1 (555) 123-4567</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <p>&copy; 2026 LUMINA. All rights reserved.</p>
+                </div>
+                <div class="back-to-top" title="Back to Top">
+                    <i class="fas fa-arrow-up"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

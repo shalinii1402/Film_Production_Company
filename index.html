@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUMINA Studios | Cinematic Film Production</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Home 1 Specific Styles */
+        .hero {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            object-fit: cover;
+            filter: brightness(0.4);
+        }
+
+        /* Fallback background if video fails or for design */
+        /* Fallback background if video fails or for design */
+        /* Removed .hero::before override to allow style.css overlay to work */
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            max-width: 900px;
+            padding: 0 20px;
+            transform: translateY(30px);
+            opacity: 0;
+            animation: heroFadeIn 1.5s ease forwards 0.5s;
+        }
+
+        @keyframes heroFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-tagline {
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .hero-title {
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: #d0d0d0;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        /* Featured Preview Section */
+        .featured-preview {
+            background-color: var(--bg-secondary);
+            position: relative;
+            z-index: 2;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .project-card {
+            position: relative;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .project-media {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .project-card:hover .project-media {
+            transform: scale(1.05);
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="nav-left">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon"><i class="fas fa-film"></i></div>
+                    LUMINA<span>.</span>
+                </a>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home 1</a></li>
+                <li><a href="home-studio.html">Home 2</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="portfolio.html">Work</a></li>
+                <li><a href="crew.html">Crew</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="blog.html">Journal</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li class="mobile-actions">
+                    <a href="login.html" class="btn btn-sm">Login</a>
+                    <a href="signup.html" class="btn btn-sm btn-primary">Sign Up</a>
+                </li>
+            </ul>
+
+            <div class="nav-right">
+                <div class="nav-actions">
+                    <button class="theme-btn" title="Toggle Theme"><i class="fas fa-moon"></i></button>
+                    <a href="login.html" class="btn btn-sm">Login</a>
+                    <a href="signup.html" class="btn btn-sm btn-primary">Sign Up</a>
+                </div>
+                <div class="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero"
+        style="background-image: url('https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2071&auto=format&fit=crop');">
+        <!-- Placeholder Video Element (Hidden if no source) -->
+        <!-- <video class="hero-video" autoplay muted loop playsinline poster="images/poster.jpg">
+            <source src="images/hero-reel.mp4" type="video/mp4">
+        </video> -->
+
+        <div class="hero-content">
+            <span class="hero-tagline">Storytelling Reimagined</span>
+            <h1 class="hero-title">WE CRAFT VISUAL LEGACIES</h1>
+            <p class="hero-subtitle">An award-winning production house dedicated to pushing the boundaries of cinematic
+                storytelling. We turn vision into reality.</p>
+            <div class="hero-buttons">
+                <a href="showreel.html" class="btn btn-primary"><i class="fas fa-play" style="margin-right: 8px;"></i>
+                    View Showreel</a>
+                <a href="contact.html" class="btn">Get in Touch</a>
+            </div>
+        </div>
+
+    </header>
+
+    <!-- Structured Content Sections -->
+    <main class="structured-sections">
+        <!-- Section 1: Visual Excellence (Split) -->
+        <section class="section-split">
+            <div class="container split-image-wrapper fade-in">
+                <img src="https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=2070&auto=format&fit=crop"
+                    alt="Cinematic Works" class="split-image">
+            </div>
+            <div class="container split-content fade-in">
+                <h2>VISUAL ALCHEMY</h2>
+                <p>We don't just capture moments; we construct visual realities. Our portfolio spans award-winning
+                    feature films, immersive commercials, and music videos that define the zeitgeist.</p>
+                <a href="portfolio.html" class="btn btn-primary">Explore Our Work</a>
+            </div>
+        </section>
+
+        <!-- Section 2: Studio Philosophy (Split Reverse) -->
+        <section class="section-split reverse">
+            <div class="container split-image-wrapper fade-in">
+                <img src="https://images.pexels.com/photos/10563272/pexels-photo-10563272.jpeg" alt="Philosophy"
+                    class="split-image">
+            </div>
+            <div class="container split-content fade-in">
+                <h2>THE ART OF IMMERSION</h2>
+                <p>At LUMINA, we believe in the power of the frame. Every shadow, every beam of light, and every camera
+                    movement is orchestrated to pull the audience deeper into the narrative.</p>
+                <a href="about.html" class="btn">Our Philosophy</a>
+            </div>
+        </section>
+
+        <!-- Section 3: Value/Highlight (Center) -->
+        <section class="section-highlight fade-in">
+            <div class="container">
+                <h2>"Cinema is a matter of what's in the frame and what's out."</h2>
+                <p>– A commitment to precision engineering.</p>
+                <a href="services.html" class="btn btn-primary">View Capabilities</a>
+            </div>
+        </section>
+
+        <!-- Section 4: The Collective (Split) -->
+        <section class="section-split">
+            <div class="container split-image-wrapper fade-in">
+                <img src="https://images.unsplash.com/photo-1515634928627-2a4e0dae3ddf?q=80&w=2070&auto=format&fit=crop"
+                    alt="The Crew" class="split-image">
+            </div>
+            <div class="container split-content fade-in">
+                <h2>MASTER CRAFTSMEN</h2>
+                <p>A film is only as good as the hands that build it. Our team consists of veteran cinematographers,
+                    visionary directors, and technical virtuosos dedicated to the craft of cinema.</p>
+                <a href="crew.html" class="btn">Meet The Team</a>
+            </div>
+        </section>
+
+        <!-- Section 5: Future Projects (Full CTA) -->
+        <section class="section-cta-full fade-in">
+            <div class="container">
+                <h2>CREATE THE UNSEEN</h2>
+                <p style="max-width: 600px; margin: 0 auto 2.5rem; color: #aaa;">The next masterpiece hasn't been filmed
+                    yet. Whether you have a fully formed script or a spark of an idea, we are the partners who can
+                    ignite it into a roaring fire.</p>
+                <a href="contact.html" class="btn btn-primary btn-lg" style="padding: 1.2rem 3rem;">Start Your
+                    Project</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo" style="margin-bottom: 1.5rem; display: flex;">
+                        <div class="logo-icon"><i class="fas fa-film"></i></div>
+                        LUMINA<span>.</span>
+                    </a>
+                    <p>Directing the future of cinematic excellence through immersive visual storytelling and raw
+                        creative passion.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-vimeo-v"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Explore</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="portfolio.html">Work</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="crew.html">Crew</a></li>
+                        <li><a href="blog.html">Journal</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt" style="margin-right:12px; color:var(--accent-color)"></i>
+                            123 Cinema Blvd, Los Angeles, CA</li>
+                        <li><i class="fas fa-envelope" style="margin-right:12px; color:var(--accent-color)"></i>
+                            hello@lumina.com</li>
+                        <li><i class="fas fa-phone" style="margin-right:12px; color:var(--accent-color)"></i>
+                            +1 (555) 123-4567</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <p>&copy; 2026 LUMINA. All rights reserved.</p>
+                </div>
+                <div class="back-to-top" title="Back to Top">
+                    <i class="fas fa-arrow-up"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <style>
+        .accent-text {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+    </style>
+</body>
+
+</html>
