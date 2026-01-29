@@ -9,54 +9,155 @@
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* --- Hero Section Fixes --- */
         .page-header {
             background: transparent !important;
             min-height: auto !important;
+            padding-top: 150px;
+            /* Ensure spacing from top */
+            padding-bottom: 80px;
         }
 
         .page-header::before {
             display: none !important;
         }
 
-        .about-story {
+        /* Light Mode Hero Visibility Fix */
+        body.light-mode .page-header h1 {
+            color: #1a1a1a !important;
+        }
+
+        body.light-mode .page-header p {
+            color: #4a4a4a !important;
+        }
+
+        /* --- Voices of Vision (New Layout) --- */
+        .voices-wrapper {
+            padding: 80px 0;
+            background: var(--bg-color);
+        }
+
+        .section-header {
+            text-align: left;
+            margin-bottom: 3rem;
             max-width: 800px;
-            margin: 0 auto;
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #ccc;
         }
 
-        .about-story p {
-            margin-bottom: 2rem;
-            color: inherit;
-        }
-
-        .vision-mission {
+        .voices-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            margin: 4rem 0;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            align-items: stretch;
+            /* Equal Height */
         }
 
-        @media (max-width: 768px) {
-            .vision-mission {
-                grid-template-columns: 1fr;
+        .voice-card {
+            background: var(--bg-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .voice-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .voice-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .voice-content {
+            padding: 2rem;
+            flex-grow: 1;
+            /* Pushes content to fill height */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .voice-quote {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            position: relative;
+        }
+
+        .voice-quote::before {
+            content: '\f10d';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--accent-color);
+            margin-right: 8px;
+        }
+
+        .voice-author h4 {
+            color: var(--white);
+            font-size: 1.1rem;
+            margin-bottom: 0.2rem;
+            font-weight: 700;
+        }
+
+        .voice-author p {
+            color: var(--accent-color);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Light Mode Voices Fix */
+        body.light-mode .voice-card {
+            background: #ffffff;
+            border-color: rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        body.light-mode .voice-author h4 {
+            color: #1a1a1a;
+        }
+
+        /* Responsiveness */
+        @media (max-width: 1024px) {
+            .voices-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            /* Center Heading and Card Content on Tablet/Mobile */
+            .section-header {
+                text-align: center !important;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .voice-content {
+                text-align: center !important;
+                align-items: center;
+                /* Center flex children */
+            }
+
+            .voice-quote,
+            .voice-author {
+                text-align: center !important;
             }
         }
 
-        .vm-card {
-            background: var(--bg-secondary);
-            padding: 3rem;
-            border-left: 3px solid var(--accent-color);
-        }
+        @media (max-width: 768px) {
+            .voices-grid {
+                grid-template-columns: 1fr;
+            }
 
-        .vm-card h3 {
-            margin-bottom: 1rem;
-            color: var(--accent-color);
-        }
-
-        .milestones {
-            margin-top: 8rem;
+            .page-header {
+                padding-top: 120px;
+            }
         }
     </style>
 </head>
@@ -103,7 +204,7 @@
 
     <header class="page-header">
         <div class="container">
-            <h1 class="fade-in" style="font-size: 4rem; margin-bottom: 0.75rem;">Our Story</h1>
+            <h1 class="fade-in" style="font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 1rem;">Our Story</h1>
             <p class="fade-in"
                 style="max-width: 850px; margin: 0 auto; line-height: 1.8; color: var(--text-secondary);">Since 2012,
                 we’ve been more than just a production house; we are a collective of visionaries dedicated to the art of
@@ -131,7 +232,7 @@
         </section>
 
         <!-- Section 2: Artistic Philosophy (Split Reverse) -->
-        <section class="section-split reverse">
+        <section class="section-split reverse" id="philosophy">
             <div class="container split-image-wrapper fade-in">
                 <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1925&auto=format&fit=crop"
                     alt="Philosophy" class="split-image">
@@ -167,55 +268,53 @@
             </div>
         </section>
 
-        <!-- Section 5: Testimonials -->
-        <section class="testimonials-wrapper fade-in">
+        <!-- Section 5: Voices of Vision (Redesigned) -->
+        <section class="voices-wrapper fade-in">
             <div class="container">
                 <div class="section-header">
                     <h2 class="section-title">VOICES OF VISION</h2>
-                    <p>We don't just deliver videos; we build trust through cinematic excellence.</p>
+                    <p style="color: var(--text-secondary); max-width: 600px;">We don't just deliver videos; we build
+                        trust through cinematic excellence.</p>
                 </div>
 
-                <div class="testimonial-grid">
-                    <!-- Testimonial 1 -->
-                    <div class="testimonial-card">
-                        <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
-                        <p class="testimonial-text">"LUMINA transformed our brand's narrative into a cinematic journey.
-                            Their attention to detail and emotional depth is unparalleled in the industry today."</p>
-                        <div class="testimonial-author">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop"
-                                alt="Marcus Chen" class="author-img">
-                            <div class="author-info">
+                <div class="voices-grid">
+                    <!-- Card 1 -->
+                    <div class="voice-card">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop"
+                            alt="Marcus Chen" class="voice-img">
+                        <div class="voice-content">
+                            <p class="voice-quote">LUMINA transformed our brand's narrative into a cinematic journey.
+                                Their attention to detail and emotional depth is unparalleled in the industry today.</p>
+                            <div class="voice-author">
                                 <h4>Marcus Chen</h4>
                                 <p>Creative Director, Zenith Lux</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Testimonial 2 -->
-                    <div class="testimonial-card">
-                        <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
-                        <p class="testimonial-text">"Working with them was a masterclass in collaboration. They took our
-                            complex message and distilled it into a powerful visual story that resonated globally."</p>
-                        <div class="testimonial-author">
-                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop"
-                                alt="Elena Rodriguez" class="author-img">
-                            <div class="author-info">
+                    <!-- Card 2 -->
+                    <div class="voice-card">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop"
+                            alt="Elena Rodriguez" class="voice-img">
+                        <div class="voice-content">
+                            <p class="voice-quote">Working with them was a masterclass in collaboration. They took our
+                                complex message and distilled it into a powerful visual story that resonated globally.
+                            </p>
+                            <div class="voice-author">
                                 <h4>Elena Rodriguez</h4>
                                 <p>Head of Marketing, NeoPulse</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Testimonial 3 -->
-                    <div class="testimonial-card">
-                        <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
-                        <p class="testimonial-text">"The level of technical mastery they bring to the table is
-                            astounding. They are not just filmmakers; they are visual architects of the highest order."
-                        </p>
-                        <div class="testimonial-author">
-                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2070&auto=format&fit=crop"
-                                alt="David Sterling" class="author-img">
-                            <div class="author-info">
+                    <!-- Card 3 -->
+                    <div class="voice-card">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2070&auto=format&fit=crop"
+                            alt="David Sterling" class="voice-img">
+                        <div class="voice-content">
+                            <p class="voice-quote">The level of technical mastery they bring to the table is astounding.
+                                They are not just filmmakers; they are visual architects of the highest order.</p>
+                            <div class="voice-author">
                                 <h4>David Sterling</h4>
                                 <p>Founder, Sterling Estates</p>
                             </div>
@@ -224,7 +323,7 @@
                 </div>
 
                 <!-- CTA Box -->
-                <div class="cta-box fade-in">
+                <div class="cta-box fade-in" style="margin-top: 80px;">
                     <h3>READY TO TELL YOUR STORY?</h3>
                     <p>Let's collaborate on your next project and create something that the world will never forget. Our
                         studio doors are always open for visionary ideas.</p>

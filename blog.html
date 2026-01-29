@@ -12,7 +12,6 @@
         /* Editorial Journal Styles */
         :root {
             --input-bg: rgba(255, 255, 255, 0.1);
-            /* Increased opacity */
             --card-border: rgba(255, 255, 255, 0.06);
         }
 
@@ -36,6 +35,13 @@
             padding: 1.5rem 0;
             border-bottom: 1px solid var(--card-border);
             margin-bottom: 4rem;
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* Light Mode Overrides for Controls */
+        body.light-mode .controls-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
 
         .journal-controls {
@@ -60,6 +66,11 @@
             color: rgba(255, 255, 255, 0.7);
             font-size: 1.1rem;
             z-index: 2;
+            transition: color 0.3s ease;
+        }
+
+        body.light-mode .search-wrapper i {
+            color: rgba(0, 0, 0, 0.5);
         }
 
         .search-input {
@@ -74,16 +85,30 @@
             transition: var(--transition);
         }
 
+        body.light-mode .search-input {
+            background: rgba(0, 0, 0, 0.05);
+            border-color: rgba(0, 0, 0, 0.1);
+            color: var(--text-primary);
+        }
+
         .search-input:focus {
             outline: none;
             border-color: var(--accent-color);
             background: rgba(255, 255, 255, 0.15);
         }
 
+        body.light-mode .search-input:focus {
+            background: rgba(0, 0, 0, 0.08);
+            border-color: var(--accent-color);
+        }
+
         .search-input::placeholder {
             color: rgba(255, 255, 255, 0.6);
             opacity: 1;
-            /* Firefox */
+        }
+
+        body.light-mode .search-input::placeholder {
+            color: rgba(0, 0, 0, 0.5);
         }
 
         .filter-groups {
@@ -106,6 +131,11 @@
             transition: var(--transition);
         }
 
+        body.light-mode .filter-tag {
+            color: var(--text-secondary);
+            /* Ensure visibility */
+        }
+
         .filter-tag::after {
             content: '';
             position: absolute;
@@ -120,6 +150,12 @@
         .filter-tag:hover,
         .filter-tag.active {
             color: var(--white);
+        }
+
+        body.light-mode .filter-tag:hover,
+        body.light-mode .filter-tag.active {
+            color: var(--accent-color);
+            /* Dark mode uses white, light uses accent for active contrast */
         }
 
         .filter-tag.active::after {
@@ -374,7 +410,7 @@
     <!-- Structured Content Sections -->
     <main class="structured-sections">
         <!-- Section 1: Editorial Philosophy (Split) -->
-        <section class="section-split">
+        <section class="section-split" data-category="cinematography">
             <div class="container split-image-wrapper fade-in">
                 <img src="https://images.pexels.com/photos/27821472/pexels-photo-27821472.jpeg" alt="Editorial"
                     class="split-image">
@@ -388,7 +424,7 @@
         </section>
 
         <!-- Section 2: Technical Deep Dives (Split Reverse) -->
-        <section class="section-split reverse">
+        <section class="section-split reverse" data-category="technology">
             <div class="container split-image-wrapper fade-in">
                 <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop"
                     alt="Technology" class="split-image">
@@ -402,7 +438,7 @@
         </section>
 
         <!-- Section 3: Visual Storytelling (Highlight) -->
-        <section class="section-highlight fade-in">
+        <section class="section-highlight fade-in" data-category="production tips">
             <div class="container">
                 <h2>"A story is not just told; it is felt."</h2>
                 <p>– Discover the psychology behind our frame compositions and color grading.</p>
@@ -411,7 +447,7 @@
         </section>
 
         <!-- Section 4: Behind the Scenes (Split) -->
-        <section class="section-split">
+        <section class="section-split" data-category="behind the scenes">
             <div class="container split-image-wrapper fade-in">
                 <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=2070&auto=format&fit=crop"
                     alt="Behind the Scenes" class="split-image">
@@ -505,26 +541,63 @@
 
     <script src="js/main.js"></script>
     <script>
-        // Simple Filter State Toggle
+        // Filter and Search Logic
         const filterTags = document.querySelectorAll('.filter-tag');
+        const sections = document.querySelectorAll('main.structured-sections > section[data-category]'); // Only filter categorized sections
+        const searchInput = document.querySelector('.search-input');
 
+        // Filter Functionality
         filterTags.forEach(tag => {
             tag.addEventListener('click', () => {
+                // Update Active UI
                 filterTags.forEach(t => t.classList.remove('active'));
                 tag.classList.add('active');
 
-                // In a real application, you would trigger a fetch or filter logic here
-                console.log(`Filtering for: ${tag.innerText}`);
+                const category = tag.innerText.toLowerCase().trim();
+
+                sections.forEach(section => {
+                    const sectionCategory = section.getAttribute('data-category');
+
+                    // Filter Logic: Show if 'all' or matches category
+                    if (category === 'all' || sectionCategory === category) {
+                        section.style.display = ''; // Reset to default CSS value
+                        // Animation reset for visual effect
+                        section.style.opacity = '0';
+                        setTimeout(() => section.style.opacity = '1', 50);
+                    } else {
+                        section.style.display = 'none';
+                    }
+                });
             });
         });
 
-        // Search Input UI feedback
-        const searchInput = document.querySelector('.search-input');
+        // Search Functionality
         searchInput.addEventListener('input', (e) => {
-            // Placeholder for real search logic
-            if (e.target.value.length > 2) {
-                console.log(`Searching for: ${e.target.value}`);
+            const term = e.target.value.toLowerCase().trim();
+
+            // If search is active, ignore category filters for a moment or stick to them? 
+            // Standard UX: Search searches everything usually.
+
+            // Reset filter active state if searching
+            if (term.length > 0) {
+                filterTags.forEach(t => t.classList.remove('active'));
+                // Optionally visually indicate "Searching..." or keep "All" inactive
+            } else {
+                // Return to "All" or keep current? Let's reset to All for simplicity
+                filterTags[0].classList.add('active');
             }
+
+            sections.forEach(section => {
+                const text = section.innerText.toLowerCase();
+                const sectionCategory = section.getAttribute('data-category');
+
+                // Show if text matches search term
+                if (text.includes(term)) {
+                    section.style.display = '';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
         });
     </script>
 </body>
