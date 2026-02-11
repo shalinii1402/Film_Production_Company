@@ -34,15 +34,36 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Theme Toggle
-    const themeBtn = document.querySelector('.theme-btn');
+    const themeBtns = document.querySelectorAll('.theme-btn');
     const body = document.body;
-    const themeIcon = themeBtn ? themeBtn.querySelector('i') : null;
+
+    // Function to update all theme icons
+    const updateThemeIcons = (isLight) => {
+        themeBtns.forEach(btn => {
+            const icon = btn.querySelector('i');
+            if (icon) {
+                icon.className = isLight ? 'fas fa-sun' : 'fas fa-moon';
+            }
+        });
+    };
 
     // Check for saved theme
-    if (localStorage.getItem('theme') === 'light') {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
         body.classList.add('light-mode');
-        if (themeIcon) themeIcon.className = 'fas fa-sun';
+        updateThemeIcons(true);
+    } else {
+        updateThemeIcons(false);
     }
+
+    themeBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            const isLight = body.classList.contains('light-mode');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            updateThemeIcons(isLight);
+        });
+    });
 
     // Back to Top functionality
     const backToTop = document.querySelector('.back-to-top');
@@ -52,19 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 top: 0,
                 behavior: 'smooth'
             });
-        });
-    }
-
-    if (themeBtn) {
-        themeBtn.addEventListener('click', () => {
-            body.classList.toggle('light-mode');
-            const isLight = body.classList.contains('light-mode');
-
-            localStorage.setItem('theme', isLight ? 'light' : 'dark');
-
-            if (themeIcon) {
-                themeIcon.className = isLight ? 'fas fa-sun' : 'fas fa-moon';
-            }
         });
     }
 
