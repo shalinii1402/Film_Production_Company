@@ -1417,6 +1417,19 @@ body.light-mode .login-card {
     color: var(--text-secondary);
 }
 
+.login-card .form-check label,
+.login-card .remember-me {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+}
+
+.login-card .form-check input,
+.login-card .remember-me input {
+    margin: 0;
+    flex-shrink: 0;
+}
+
 .login-card .form-control {
     width: 100%;
     padding: 12px 15px;
@@ -1538,6 +1551,15 @@ body.light-mode .btn-social {
     background: rgba(230, 0, 0, 0.05);
 }
 
+.btn-full {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 10px 20px;
+    margin-bottom: 2rem;
+    font-size: 0.85rem;
+}
+
 .back-link {
     text-align: center;
     margin-top: 2rem;
@@ -1557,7 +1579,7 @@ body.light-mode .back-link a {
 .form-check {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
     margin-bottom: 1.5rem;
     font-size: 0.85rem;
     color: var(--text-secondary);
@@ -1579,12 +1601,7 @@ body.light-mode .back-link a {
     color: var(--accent-color);
 }
 
-.login-theme-toggle {
-    position: absolute;
-    top: 2rem;
-    right: 2rem;
-    z-index: 10;
-}
+
 
 @media (max-width: 480px) {
     .login-card {
@@ -1595,8 +1612,5 @@ body.light-mode .back-link a {
         grid-template-columns: 1fr;
     }
 
-    .login-theme-toggle {
-        top: 1rem;
-        right: 1rem;
-    }
+
 }
