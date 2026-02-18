@@ -153,6 +153,44 @@
         @media (max-width: 768px) {
             .voices-grid {
                 grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .voice-card {
+                max-width: 550px;
+                margin: 0 auto;
+                border-radius: 12px;
+                padding: 20px;
+                background: var(--bg-secondary);
+                text-align: center;
+            }
+
+            .voice-img {
+                width: 100%;
+                max-width: 450px;
+                height: 380px;
+                margin: 0 auto 1.5rem;
+                display: block;
+                border-radius: 10px;
+                object-fit: cover;
+                object-position: center 15%;
+                /* Ensures head is not cut off */
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            }
+
+            .voice-content {
+                padding: 1.5rem 0 0.5rem;
+                text-align: center;
+                align-items: center;
+            }
+
+            .voice-quote {
+                font-size: 1.05rem;
+                margin-bottom: 2rem;
+            }
+
+            .voice-author {
+                text-align: center !important;
             }
 
             .page-header {
@@ -280,7 +318,7 @@
                 <div class="voices-grid">
                     <!-- Card 1 -->
                     <div class="voice-card">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974&auto=format&fit=crop"
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=2000&auto=format&fit=crop"
                             alt="Marcus Chen" class="voice-img">
                         <div class="voice-content">
                             <p class="voice-quote">LUMINA transformed our brand's narrative into a cinematic journey.
@@ -294,7 +332,7 @@
 
                     <!-- Card 2 -->
                     <div class="voice-card">
-                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1974&auto=format&fit=crop"
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=2000&auto=format&fit=crop"
                             alt="Elena Rodriguez" class="voice-img">
                         <div class="voice-content">
                             <p class="voice-quote">Working with them was a masterclass in collaboration. They took our
@@ -309,7 +347,7 @@
 
                     <!-- Card 3 -->
                     <div class="voice-card">
-                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2070&auto=format&fit=crop"
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=2000&auto=format&fit=crop"
                             alt="David Sterling" class="voice-img">
                         <div class="voice-content">
                             <p class="voice-quote">The level of technical mastery they bring to the table is astounding.
